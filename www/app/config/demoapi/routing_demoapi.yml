@@ -1,0 +1,11 @@
+project_demoapi_routing_actor_command:
+    resource: '@DemoApiContextPresentationBundle/Resources/config/route/actor_command.yml'
+    prefix: /api
+
+project_demoapi_routing_actor_query:
+    resource: '@DemoApiContextPresentationBundle/Resources/config/route/actor_query.yml'
+    prefix: /api
+
+project_demoapi_routing_swagger:
+    resource: '@DemoApiContextPresentationBundle/Resources/config/route/swagger.yml'
+    prefix: /api

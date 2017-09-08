@@ -1,0 +1,12 @@
+parameters:
+    ##########################
+    # Environment names list #
+    ##########################
+    project.demoapi.environment.dev: demoapi
+
+imports:
+    - { resource: request/request.yml }
+    - { resource: application/actor/actor.yml }
+    - { resource: controller/actor_command.yml }
+    - { resource: controller/actor_query.yml }
+    - { resource: request/actor_request.yml }

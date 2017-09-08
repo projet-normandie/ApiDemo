@@ -1,0 +1,46 @@
+parameters:
+    ############
+    # CRITERIA #
+    ############
+    project.demoapi.request.custom_type.criteria.class: ProjetNormandie\DddProviderBundle\Layer\Presentation\Request\CustomType\Criteria
+
+    ############
+    # REGISTRY #
+    ############
+    project.demoapi.specification.operator_registry.class: ProjetNormandie\DddProviderBundle\Layer\Presentation\Request\CustomType\Criteria\Registry\OperatorRegistry
+    project.demoapi.specification.logical_operator_registry.class: ProjetNormandie\DddProviderBundle\Layer\Presentation\Request\CustomType\Criteria\Registry\LogicalOperatorRegistry
+
+    ######################
+    # SPECIFIC OPERATORS #
+    ######################
+    # Add your specific operators here then look at the "project.demoapi.specification.operator_registry" service definition.
+    project.demoapi.specification.distance.earth_distance.class: DemoApiContext\Application\Specification\Distance\EarthDistanceSpec
+
+    ##############################
+    # SPECIFIC LOGICAL OPERATORS #
+    ##############################
+    # Add your specific logical aggregate operators here then look at the "project.demoapi.specification.logical_operator_registry" service definition.
+
+services:
+    ############
+    # CRITERIA #
+    ############
+    project.demoapi.request.custom_type.criteria:
+        class: '%project.demoapi.request.custom_type.criteria.class%'
+        arguments:
+            - '@project.demoapi.specification.operator_registry'
+            - '@project.demoapi.specification.logical_operator_registry'
+
+    ############
+    # REGISTRY #
+    ############
+    project.demoapi.specification.operator_registry:
+        class: '%project.demoapi.specification.operator_registry.class%'
+        # Call the "setOperator" method for each operators by giving the operator to load.
+        calls:
+          - [setOperator, ['%project.demoapi.specification.distance.earth_distance.class%']]
+
+    project.demoapi.specification.logical_operator_registry:
+        class: '%project.demoapi.specification.logical_operator_registry.class%'
+        # Call the "setOperator" method by giving the logical operator to load.
+

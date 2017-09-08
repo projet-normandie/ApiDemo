@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Author: Nicolas Giraud <nicolas.giraud.dev@gmail.com>
+# Copyright (c) 2017
+# License: MIT
+
+set -o errexit  # Make your script exit when a command fails.
+set -o pipefail # Catch 'xxx' fails for command 'xxx|yyy'.
+set -o nounset  # Exit script when using unset variable.
+#set -o xtrace   # Debug mode. Uncomment to activate.
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__root="$(cd "$(dirname "${__dir}")" && pwd)"
+
+# Set the URL registry where the docker image to based on is stored.
+REGISTRY="nicodocker91/pdepend"
+
+# Set dynamic options for the command:
+# - Enable the --tty option if there is a tty.
+option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
+
+# Build the reports folder where logs will be stored, and its symlink.
+mkdir -p data/reports/ApiDemo/$(date +'%Y%m%d0000') 2>/dev/null
+ln -sfn $(date +'%Y%m%d0000') data/reports/ApiDemo/current
+
+REPORTS_FOLDER="data/reports/ApiDemo/current/logs/pdepend"
+mkdir -p ${REPORTS_FOLDER} 2>/dev/null
+
+# Run the docker command.
+docker run --rm ${option_tty} \
+    --user $(id -u):$(id -g) \
+    --volume ${__root}:/data/www \
+    ${REGISTRY} \
+        --ignore=/Tests/ \
+        --summary-xml=${REPORTS_FOLDER}/summary.xml \
+        --jdepend-xml=${REPORTS_FOLDER}/pdepend.xml \
+        --jdepend-chart=${REPORTS_FOLDER}/dependencies.svg \
+        --overview-pyramid=${REPORTS_FOLDER}/overview-pyramid.svg \
+        www/src

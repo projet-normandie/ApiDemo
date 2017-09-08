@@ -1,0 +1,5 @@
+.env
+vendor/*
+app/check.php
+app/SymfonyRequirements.php
+app/bootstrap.php.cache

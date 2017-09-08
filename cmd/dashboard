@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Author: Nicolas Giraud <nicolas.giraud.dev@gmail.com>
+# Copyright (c) 2017
+# License: MIT
+
+set -o errexit  # Make your script exit when a command fails.
+set -o pipefail # Catch 'xxx' fails for command 'xxx|yyy'.
+set -o nounset  # Exit script when using unset variable.
+#set -o xtrace   # Debug mode. Uncomment to activate.
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__root="$(cd "$(dirname "${__dir}")" && pwd)"
+
+# Set the URL registry where the docker image to based on is stored.
+REGISTRY="nicodocker91/qa-dashboard"
+
+# Set dynamic options for the command:
+# - Enable the --tty option if there is a tty.
+option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
+
+# Run the docker command.
+docker run --rm ${option_tty} \
+    --user $(id -u):$(id -g) \
+    --volume /etc/timezone:/etc/timezone:ro \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --volume ${__root}/data/reports:/data/build \
+    ${REGISTRY} \
+        ApiDemo

@@ -1,0 +1,131 @@
+parameters:
+    ############
+    # MANAGERS #
+    ############
+    project.demoapi.actor.manager.query.get_one.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Query\GetOneManager
+    project.demoapi.actor.manager.query.get_by_ids.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Query\GetByIdsManager
+    project.demoapi.actor.manager.query.get_all.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Query\GetAllManager
+    project.demoapi.actor.manager.query.search_by.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Query\SearchByManager
+
+    #################
+    # QUERY ADAPTER #
+    #################
+    project.demoapi.actor.query.get_one.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Query\GetOneQueryAdapter
+    project.demoapi.actor.query.get_by_ids.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Query\GetByIdsQueryAdapter
+    project.demoapi.actor.query.get_all.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Query\GetAllQueryAdapter
+    project.demoapi.actor.query.search_by.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Query\SearchByQueryAdapter
+
+    #################
+    # QUERY HANDLER #
+    #################
+    project.demoapi.actor.query.get_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Query\Handler\GetOneQueryHandler
+    project.demoapi.actor.query.get_by_ids.handler.class: DemoApiContext\Application\Cqrs\Actor\Query\Handler\GetByIdsQueryHandler
+    project.demoapi.actor.query.get_all.handler.class: DemoApiContext\Application\Cqrs\Actor\Query\Handler\GetAllQueryHandler
+    project.demoapi.actor.query.search_by.handler.class: DemoApiContext\Application\Cqrs\Actor\Query\Handler\SearchByQueryHandler
+
+services:
+    ###########
+    # MANAGER #
+    ###########
+
+    #
+    # GetOne Manager Configuration
+    #
+    project.demoapi.actor.manager.query.get_one:
+        class: '%project.demoapi.actor.manager.query.get_one.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+
+    #
+    # GetByIds Manager Configuration
+    #
+    project.demoapi.actor.manager.query.get_by_ids:
+        class: '%project.demoapi.actor.manager.query.get_by_ids.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+
+    #
+    # GetAll Manager Configuration
+    #
+    project.demoapi.actor.manager.query.get_all:
+        class: '%project.demoapi.actor.manager.query.get_all.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+
+    #
+    # SearchBy Manager Configuration
+    #
+    project.demoapi.actor.manager.query.search_by:
+        class: '%project.demoapi.actor.manager.query.search_by.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+
+    #################
+    # QUERY HANDLER #
+    #################
+
+    #
+    # GetOne Query Handler
+    #
+    project.demoapi.actor.query.get_one.handler:
+        class: '%project.demoapi.actor.query.get_one.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.query.get_one'
+
+    #
+    # GetByIds Query Handler
+    #
+    project.demoapi.actor.query.get_by_ids.handler:
+        class: '%project.demoapi.actor.query.get_by_ids.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.query.get_by_ids'
+
+    #
+    # GetAll Query Handler
+    #
+    project.demoapi.actor.query.get_all.handler:
+        class: '%project.demoapi.actor.query.get_all.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.query.get_all'
+
+    #
+    # SearchBy Query Handler
+    #
+    project.demoapi.actor.query.search_by.handler:
+        class: '%project.demoapi.actor.query.search_by.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.query.search_by'
+
+    #################
+    # QUERY ADAPTER #
+    #################
+
+    #
+    # GetOne Query Adapter
+    #
+    project.demoapi.actor.query.get_one.adapter:
+        class: '%project.demoapi.actor.query.get_one.adapter.class%'
+
+    #
+    # GetByIds Query Adapter
+    #
+    project.demoapi.actor.query.get_by_ids.adapter:
+        class: '%project.demoapi.actor.query.get_by_ids.adapter.class%'
+
+    #
+    # GetAll Query Adapter
+    #
+    project.demoapi.actor.query.get_all.adapter:
+        class: '%project.demoapi.actor.query.get_all.adapter.class%'
+
+    #
+    # SearchBy Query Adapter
+    #
+    project.demoapi.actor.query.search_by.adapter:
+        class: '%project.demoapi.actor.query.search_by.adapter.class%'
+        call:
+          - [addObserver, ['@project.demoapi.actor.workflow.search_by']]

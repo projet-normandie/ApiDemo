@@ -1,0 +1,79 @@
+project_actor_v1_post_one:
+    path: /v1/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.create_one:processAction }
+    methods: POST
+
+project_actor_v1_post_many:
+    path: /v1/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.create_many:processAction }
+    methods: POST
+
+project_actor_v1_put_one:
+    path: /v1/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.update_one:processAction }
+    methods: PUT
+
+project_actor_v1_put_many:
+    path: /v1/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.update_many:processAction }
+    methods: PUT
+
+project_actor_v1_patch_one:
+    path: /v1/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.patch_one:processAction }
+    methods: PATCH
+
+project_actor_v1_patch_many:
+    path: /v1/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.patch_many:processAction }
+    methods: PATCH
+
+project_actor_v1_delete_one:
+    path: /v1/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.delete_one:processAction, revision: '' }
+    methods: DELETE
+
+project_actor_v1_delete_many:
+    path: /v1/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.delete_many:processAction }
+    methods: DELETE
+
+project_actor_v2_post_one:
+    path: /v2/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.create_one:processAction }
+    methods: POST
+
+project_actor_v2_post_many:
+    path: /v2/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.create_many:processAction }
+    methods: POST
+
+project_actor_v2_put_one:
+    path: /v2/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.update_one:processAction }
+    methods: PUT
+
+project_actor_v2_put_many:
+    path: /v2/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.update_many:processAction }
+    methods: PUT
+
+project_actor_v2_patch_one:
+    path: /v2/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.patch_one:processAction }
+    methods: PATCH
+
+project_actor_v2_patch_many:
+    path: /v2/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.patch_many:processAction }
+    methods: PATCH
+
+project_actor_v2_delete_one:
+    path: /v2/actor
+    defaults: { _controller: project.demoapi.controller.command.actor.delete_one:processAction, revision: '' }
+    methods: DELETE
+
+project_actor_v2_delete_many:
+    path: /v2/actors
+    defaults: { _controller: project.demoapi.controller.command.actor.delete_many:processAction }
+    methods: DELETE

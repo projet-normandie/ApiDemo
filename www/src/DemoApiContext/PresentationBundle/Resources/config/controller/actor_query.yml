@@ -1,0 +1,36 @@
+services:
+    project.demoapi.controller.query.actor.get_one:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Query\GetOneController
+        arguments:
+            - '@project.demoapi.actor.query.get_one.adapter'
+            - '@project.demoapi.controller.query.actor.request.get_one'
+            - '@project.demoapi.actor.query.get_one.handler'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.query.actor.get_by_ids:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Query\GetByIdsController
+        arguments:
+            - '@project.demoapi.actor.query.get_by_ids.adapter'
+            - '@project.demoapi.controller.query.actor.request.get_by_ids'
+            - '@project.demoapi.actor.query.get_by_ids.handler'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.query.actor.get_all:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Query\GetAllController
+        arguments:
+            - '@project.demoapi.actor.query.get_all.adapter'
+            - '@project.demoapi.controller.query.actor.request.get_all'
+            - '@project.demoapi.actor.query.get_all.handler'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.query.actor.search_by:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Query\SearchByController
+        arguments:
+            - '@project.demoapi.actor.query.search_by.adapter'
+            - '@project.demoapi.controller.query.actor.request.search_by'
+            - '@project.demoapi.actor.query.search_by.handler'
+            - '@project.dddcontext.response.handler'

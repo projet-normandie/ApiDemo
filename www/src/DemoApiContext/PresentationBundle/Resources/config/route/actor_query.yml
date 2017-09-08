@@ -1,0 +1,56 @@
+project_actor_v1_get_one:
+    path: /v1/actor.{_format}/{entityId}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_one:processAction }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        entityId: '[-\w]+'
+
+project_actor_v1_get_byids:
+    path: /v1/actors.{_format}/{entityIds}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_by_ids:processAction }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        entityIds: '[-\w]+(,[-\w]+)*'
+
+project_actor_v1_get_limit:
+    path: /v1/actors.{_format}/{start}/{count}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_all:processAction, start : '0', count : '100' }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        start: '\d*'
+        count: '\d*'
+
+project_actor_v2_get_one:
+    path: /v2/actor.{_format}/{entityId}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_one:processAction }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        entityId: '[-\w]+'
+
+project_actor_v2_get_byids:
+    path: /v2/actors.{_format}/{entityIds}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_by_ids:processAction }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        entityIds: '[-\w]+(,[-\w]+)*'
+
+project_actor_v2_get_limit:
+    path: /v2/actors.{_format}/{start}/{count}
+    defaults: { _controller: project.demoapi.controller.query.actor.get_all:processAction, start : '0', count : '100' }
+    methods: GET
+    requirements:
+        _format: 'xml|json'
+        start: '\d*'
+        count: '\d*'
+
+project_actor_v1_search_by:
+    path: /v{_version}/actor/searchby
+    defaults: { _controller: project.demoapi.controller.query.actor.search_by:processAction, start : '0', count : '100' }
+    methods: POST
+    requirements:
+        _format: 'xml|json'

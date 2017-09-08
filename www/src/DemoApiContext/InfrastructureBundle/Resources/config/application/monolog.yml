@@ -1,0 +1,49 @@
+parameters:
+    project.monolog.handler.socket.class: DemoApiContext\Infrastructure\Monolog\Handler\SocketHandler
+    project.monolog.processor.presentation.class: DemoApiContext\Infrastructure\Monolog\Processor\IntrospectionPresentationProcessor
+    project.monolog.processor.application.class: DemoApiContext\Infrastructure\Monolog\Processor\IntrospectionApplicationProcessor
+    project.monolog.processor.domain.class: DemoApiContext\Infrastructure\Monolog\Processor\IntrospectionDomainProcessor
+    project.monolog.processor.infrastructure.class: DemoApiContext\Infrastructure\Monolog\Processor\IntrospectionInfrastrctureProcessor
+
+services:
+
+    #
+    # MONOLOG:::configuration of the manager monolog processor
+    #
+    project.dddcontext.monolog.handler.socket:
+        class: '%project.monolog.handler.socket.class%'
+
+    #
+    # MONOLOG:::configuration of the presentation monolog processor
+    #
+    project.monolog.processor.presentation:
+        class: '%project.monolog.processor.presentation.class%'
+        arguments:  [ '@security.token_storage' ]
+        tags:
+            - { name: monolog.processor, channel: presentation, method: processRecord }
+
+    #
+    # MONOLOG:::configuration of the presentation monolog processor
+    #
+    project.monolog.processor.application:
+        class: '%project.monolog.processor.application.class%'
+        arguments:  [ '@security.token_storage' ]
+        tags:
+            - { name: monolog.processor, channel: application, method: processRecord }
+
+    #
+    # MONOLOG:::configuration of the presentation monolog processor
+    #
+    project.monolog.processor.domain:
+        class: '%project.monolog.processor.presentation.class%'
+        arguments:  [ '@security.token_storage' ]
+        tags:
+            - { name: monolog.processor, channel: domain, method: processRecord }
+    #
+    # MONOLOG:::configuration of the presentation monolog processor
+    #
+    project.monolog.processor.infrastructure:
+        class: '%project.monolog.processor.presentation.class%'
+        arguments:  [ '@security.token_storage' ]
+        tags:
+            - { name: monolog.processor, channel: infrastructure, method: processRecord }

@@ -1,0 +1,105 @@
+imports:
+    - { resource: ../parameters.yml }
+    - { resource: ../mail_blacklist.yml }
+    - { resource: security_demoapi.yml }
+    - { resource: config_demoapi_common.yml }
+
+#
+# StofDoctrineExtensionsBundle configuration
+#
+stof_doctrine_extensions:
+    orm:
+        default:
+            translatable:         true
+            timestampable:        true
+            blameable:            false
+            sluggable:            true
+            tree:                 true
+            loggable:             true
+            sortable:             true
+            softdeleteable:       false
+            uploadable:           true
+            reference_integrity:  false
+    class:
+        translatable:         Gedmo\Translatable\TranslatableListener
+        timestampable:        Gedmo\Timestampable\TimestampableListener
+        blameable:            Gedmo\Blameable\BlameableListener
+        sluggable:            Gedmo\Sluggable\SluggableListener
+        tree:                 Gedmo\Tree\TreeListener
+        loggable:             Gedmo\Loggable\LoggableListener
+        sortable:             Gedmo\Sortable\SortableListener
+        softdeleteable:       Gedmo\SoftDeleteable\SoftDeleteableListener
+        uploadable:           Gedmo\Uploadable\UploadableListener
+        reference_integrity:  Gedmo\ReferenceIntegrity\ReferenceIntegrityListener
+    uploadable:
+        # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
+        default_file_path:    %kernel.root_dir%/../web/uploads
+        # Mime type guesser class: Optional. By default, we provide an adapter for the one present in the HttpFoundation component of Symfony
+        mime_type_guesser_class:  Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+        # Default file info class implementing FileInfoInterface: Optional. By default we provide a class which is prepared to receive an UploadedFile instance.
+        default_file_info_class:  Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+        validate_writable_directory:  true
+    default_locale: '%locale%'
+    translation_fallback:  true
+    persist_default_translation:  true
+    skip_translation_on_load:  true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection:       default
+        connections:
+            default:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+                mapping_types:
+                      enum:       string
+                      varbinary:  string
+                      tinyblob:   text
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+        mappings:
+            StofDoctrineExtensionsBundle: ~
+            demoapi:
+                type: annotation
+                alias: DemoApiContextBundle
+                prefix: DemoApiContext\Domain\Entity
+                dir: '%kernel.root_dir%/../src/DemoApiContext/Domain/Entity'
+            demoapi_vo:
+                type: annotation
+                alias: DemoApiContextBundleVO
+                prefix: DemoApiContext\Domain\ValueObject
+                dir: '%kernel.root_dir%/../src/DemoApiContext/Domain/ValueObject'
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+                dir: '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity'
+            loggable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Loggable\Entity
+                dir: '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity'
+            tree:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Tree\Entity
+                dir: '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity'
+        metadata_cache_driver: apcu # array|apc|memcache#ETC
+        query_cache_driver: apcu # array|apc|memcache#ETC
+        result_cache_driver: apcu # array|apc|memcache#ETC
+        dql:
+            numeric_functions:
+                COS: DoctrineExtensions\Query\Mysql\Cos
+                ACOS: DoctrineExtensions\Query\Mysql\Acos
+                RADIANS: DoctrineExtensions\Query\Mysql\Radians
+                SIN: DoctrineExtensions\Query\Mysql\Sin
+                ASIN: DoctrineExtensions\Query\Mysql\Asin
+

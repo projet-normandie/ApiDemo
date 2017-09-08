@@ -1,0 +1,39 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: '%database.type.env%'
+    database_host: '%database.host.env%'
+    database_port: '%database.port.env%'
+    database_name: '%database.name.env%'
+    database_user: '%database.user.env%'
+    database_password: '%database.password.env%'
+    database.driver: '%database.driver.env%'
+
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: vgr-smtp@gmail.com
+    mailer_password: vgr-smtp
+
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+    switch_language_authorized: true
+    all_locales:
+        - fr_FR
+        - en_US
+
+    cookie_lifetime: 604800
+    project_domain:  '%project.domain.env%'
+
+    session_name: SSIDVGR
+    session_memcache_host: memcached
+    session_memcache_port: 11211
+    session_memcache_prefix: sess_memcache_
+    session_memcache_expire: 604800
+    session_memcache_locking: true
+    session_memcache_spin_lock_wait: 150000
+    session_memcache_lock_max_wait: 30
+
+    project.security.permission:
+        - VIEW
+        - EDIT
+        - CREATE
+        - DELETE

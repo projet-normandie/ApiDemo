@@ -1,0 +1,72 @@
+services:
+    project.demoapi.controller.command.actor.create_one:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\CreateOneController
+        arguments:
+            - '@project.demoapi.actor.command.create_one.adapter'
+            - '@project.demoapi.controller.command.actor.request.create_one'
+            - '@project.demoapi.actor.command.create_one.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.create_many:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\CreateManyController
+        arguments:
+            - '@project.demoapi.actor.command.create_many.adapter'
+            - '@project.demoapi.controller.command.actor.request.create_many'
+            - '@project.demoapi.actor.command.create_many.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.update_one:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\UpdateOneController
+        arguments:
+            - '@project.demoapi.actor.command.update_one.adapter'
+            - '@project.demoapi.controller.command.actor.request.update_one'
+            - '@project.demoapi.actor.command.update_one.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.update_many:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\UpdateManyController
+        arguments:
+            - '@project.demoapi.actor.command.update_many.adapter'
+            - '@project.demoapi.controller.command.actor.request.update_many'
+            - '@project.demoapi.actor.command.update_many.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.patch_one:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\PatchOneController
+        arguments:
+            - '@project.demoapi.actor.command.patch_one.adapter'
+            - '@project.demoapi.controller.command.actor.request.patch_one'
+            - '@project.demoapi.actor.command.patch_one.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.patch_many:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\PatchManyController
+        arguments:
+            - '@project.demoapi.actor.command.patch_many.adapter'
+            - '@project.demoapi.controller.command.actor.request.patch_many'
+            - '@project.demoapi.actor.command.patch_many.handler.decorator'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.delete_one:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\DeleteOneController
+        arguments:
+            - '@project.demoapi.actor.command.delete_one.adapter'
+            - '@project.demoapi.controller.command.actor.request.delete_one'
+            - '@project.demoapi.actor.command.delete_one.handler'
+            - '@project.dddcontext.response.handler'
+
+    project.demoapi.controller.command.actor.delete_many:
+        shared: false
+        class: DemoApiContext\Presentation\Coordination\Actor\Command\DeleteManyController
+        arguments:
+            - '@project.demoapi.actor.command.delete_many.adapter'
+            - '@project.demoapi.controller.command.actor.request.delete_many'
+            - '@project.demoapi.actor.command.delete_many.handler'
+            - '@project.dddcontext.response.handler'

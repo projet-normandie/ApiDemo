@@ -1,0 +1,121 @@
+services:
+    #
+    # CreateOne Command Request
+    #
+    project.demoapi.controller.command.actor.request.create_one:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\CreateOneRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # CreateMany Command Request
+    #
+    project.demoapi.controller.command.actor.request.create_many:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\CreateManyRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # UpdateOne Command Request
+    #
+    project.demoapi.controller.command.actor.request.update_one:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\UpdateOneRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # UpdateMany Command Request
+    #
+    project.demoapi.controller.command.actor.request.update_many:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\UpdateManyRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # PatchOne Command Request
+    #
+    project.demoapi.controller.command.actor.request.patch_one:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\PatchOneRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # PatchMany Command Request
+    #
+    project.demoapi.controller.command.actor.request.patch_many:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\PatchManyRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # DeleteOne Command Request
+    #
+    project.demoapi.controller.command.actor.request.delete_one:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\DeleteOneRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # DeleteMany Command Request
+    #
+    project.demoapi.controller.command.actor.request.delete_many:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Command\DeleteManyRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # GetOne Query Request
+    #
+    project.demoapi.controller.query.actor.request.get_one:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Query\GetOneRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # GetByIds Query Request
+    #
+    project.demoapi.controller.query.actor.request.get_by_ids:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Query\GetByIdsRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # GetAll Query Request
+    #
+    project.demoapi.controller.query.actor.request.get_all:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Query\GetAllRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+
+    #
+    # SearchBy Query Request
+    #
+    project.demoapi.controller.query.actor.request.search_by:
+        shared: false
+        class: DemoApiContext\Presentation\Request\Actor\Query\SearchByRequest
+        arguments:
+            - '@project.request.strategy'
+            - '@project.resolver.strategy'
+            - '@project.demoapi.request.custom_type.criteria'

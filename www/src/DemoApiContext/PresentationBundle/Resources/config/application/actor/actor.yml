@@ -1,0 +1,78 @@
+parameters:
+    ##########
+    # ENTITY #
+    ##########
+    project.demoapi.actor.entity.class: DemoApiContext\Domain\Entity\Actor
+
+    ###################
+    # DATABASE SYSTEM #
+    ###################
+    project.demoapi.actor.orm.repository.factory.class: DemoApiContext\Domain\Service\Actor\Factory\Orm\RepositoryFactory
+    project.demoapi.actor.odm.repository.factory.class: DemoApiContext\Domain\Service\Actor\Factory\Odm\RepositoryFactory
+    project.demoapi.actor.couchdb.repository.factory.class: DemoApiContext\Domain\Service\Actor\Factory\CouchDB\RepositoryFactory
+
+    #####################
+    # FIELDS DEFINITION #
+    #####################
+    project.demoapi.actor.fields_definition.class: DemoApiContext\Infrastructure\Persistence\FieldsDefinition\Actor
+
+    ###########
+    # PROCESS #
+    ###########
+    project.demoapi.actor.orm.post_query_builder.process.class: DemoApiContext\Infrastructure\Persistence\Repository\Actor\Orm\Processor\PostQueryBuilderProcess
+    project.demoapi.actor.odm.post_query_builder.process.class: DemoApiContext\Infrastructure\Persistence\Repository\Actor\Odm\Processor\PostQueryBuilderProcess
+    project.demoapi.actor.create.pre_persist.process.class: DemoApiContext\Domain\Service\Actor\Processor\PrePersistProcess
+    project.demoapi.actor.create.post_persist.process.class: DemoApiContext\Domain\Service\Actor\Processor\PostPersistProcess
+
+services:
+    ###################
+    # DATABASE SYSTEM #
+    ###################
+
+    #
+    # Repository Factory for ORM by default
+    #
+    # Info: the post_query_builder processor is not implemented with couchDB so it's skipped with compilerPass
+    #
+    project.demoapi.actor.repository.factory:
+        class: '%project.demoapi.actor.orm.repository.factory.class%'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [addProcess, ['post_query_builder', '@project.demoapi.actor.post_query_builder.process']]
+
+    #####################
+    # FIELDS DEFINITION #
+    #####################
+    project.demoapi.actor.fields_definition:
+        class: '%project.demoapi.actor.fields_definition.class%'
+
+    ###########
+    # PROCESS #
+    ###########
+
+    #
+    # Example of processor post-query-builder in repository for ORM
+    #
+    project.demoapi.actor.post_query_builder.process:
+        class: '%project.demoapi.actor.orm.post_query_builder.process.class%'
+
+    #
+    # Example of processor pre-persist in manager
+    #
+    project.demoapi.actor.create.pre_persist.process:
+        class: '%project.demoapi.actor.create.pre_persist.process.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+
+    #
+    # Example of processor post-persist in manager
+    #
+    project.demoapi.actor.create.post_persist.process:
+        class: '%project.demoapi.actor.create.post_persist.process.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+
+imports:
+    - { resource: actor_command.yml }
+    - { resource: actor_query.yml }

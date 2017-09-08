@@ -1,0 +1,57 @@
+# app/config/config.yml
+framework:
+    translator:      { fallback: '%locale%' }
+    secret: %secret%
+    router:
+        resource: '%kernel.root_dir%/config/demoapi/routing_demoapi%router.resource.suffix%.yml'
+        strict_requirements: %kernel.debug%
+    profiler:
+        enabled: %kernel.debug%
+    form:            ~
+    csrf_protection: true
+    validation:
+        enabled: true
+        enable_annotations: true
+    default_locale:  '%locale%'
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        name: %session_name%
+        cookie_lifetime: %cookie_lifetime%  # 604800 86400
+    fragments:       ~
+    http_method_override: true
+
+# config.yml
+jms_serializer:
+    property_naming:
+        separator:  _
+        lower_case: true
+
+sensio_framework_extra:
+    view: { annotations: false }
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection:       default
+        connections:
+            default:
+                driver:   pdo_sqlite
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+                mapping_types:
+                    enum:       string
+                    varbinary:  string
+                    tinyblob:   text
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+## app/config/config.yml
+# Doctrine Configuration
+demo_api_context_infrastructure:
+    database_type: %database.driver% # orm

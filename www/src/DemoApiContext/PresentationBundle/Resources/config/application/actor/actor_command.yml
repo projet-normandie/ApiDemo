@@ -1,0 +1,609 @@
+parameters:
+    ############
+    # MANAGERS #
+    ############
+    project.demoapi.actor.manager.command.create_manager.class: DemoApiContext\Domain\Service\Actor\Manager\Command\CreateManager
+    project.demoapi.actor.manager.command.update_manager.class: DemoApiContext\Domain\Service\Actor\Manager\Command\UpdateManager
+    project.demoapi.actor.manager.command.patch_manager.class: DemoApiContext\Domain\Service\Actor\Manager\Command\PatchManager
+    project.demoapi.actor.manager.command.delete_one_manager.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Command\DeleteOneManager
+    project.demoapi.actor.manager.command.delete_many_manager.class: ProjetNormandie\DddProviderBundle\Layer\Domain\Service\Generalisation\Manager\Command\DeleteManyManager
+
+    ####################
+    # WORKFLOW HANDLER #
+    ####################
+    project.demoapi.actor.create_one.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\CreateOneWFHandler
+    project.demoapi.actor.create_many.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\CreateManyWFHandler
+    project.demoapi.actor.update_one.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\UpdateOneWFHandler
+    project.demoapi.actor.update_many.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\UpdateManyWFHandler
+    project.demoapi.actor.patch_one.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\PatchOneWFHandler
+    project.demoapi.actor.patch_many.workflow.handler.class: DemoApiContext\Domain\Workflow\Actor\Handler\PatchManyWFHandler
+
+    #####################
+    # WORKFLOW OBSERVER #
+    #####################
+    # ValueObjects
+    project.demoapi.actor.workflow.generate.one.valueobject.class: DemoApiContext\Domain\Workflow\Actor\Observer\ValueObject\WFGenerateVOOne
+    project.demoapi.actor.workflow.generate.create_many.valueobject.class: DemoApiContext\Domain\Workflow\Actor\Observer\ValueObject\WFGenerateVOCreateMany
+    project.demoapi.actor.workflow.generate.update_many.valueobject.class: DemoApiContext\Domain\Workflow\Actor\Observer\ValueObject\WFGenerateVOUpdateMany
+    project.demoapi.actor.workflow.generate.valueobject.patch_one.class: DemoApiContext\Domain\Workflow\Actor\Observer\ValueObject\WFGenerateVOPatchOne
+    project.demoapi.actor.workflow.generate.patch_many.valueobject.class: DemoApiContext\Domain\Workflow\Actor\Observer\ValueObject\WFGenerateVOPatchMany
+    # Persistence
+    project.demoapi.actor.workflow.create_one.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFCreateOneEntity
+    project.demoapi.actor.workflow.create_many.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFCreateManyEntity
+    project.demoapi.actor.workflow.update_one.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFUpdateOneEntity
+    project.demoapi.actor.workflow.update_many.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFUpdateManyEntity
+    project.demoapi.actor.workflow.patch_one.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFPatchOneEntity
+    project.demoapi.actor.workflow.patch_many.entity.class: DemoApiContext\Domain\Workflow\Actor\Observer\Persistence\WFPatchManyEntity
+    # Misc.
+    project.demoapi.actor.workflow.currency.listener.class: DemoApiContext\Domain\Workflow\Actor\Observer\WFGetCurrency
+    project.demoapi.actor.workflow.loadentity.class: DemoApiContext\Domain\Workflow\Actor\Observer\WFLoadEntity
+    project.demoapi.actor.workflow.loadentities.class: DemoApiContext\Domain\Workflow\Actor\Observer\WFLoadEntities
+
+    ###################
+    # COMMAND ADAPTER #
+    ###################
+    project.demoapi.actor.command.create_one.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\CreateOneCommandAdapter
+    project.demoapi.actor.command.create_many.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\CreateManyCommandAdapter
+    project.demoapi.actor.command.update_one.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\UpdateOneCommandAdapter
+    project.demoapi.actor.command.update_many.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\UpdateManyCommandAdapter
+    project.demoapi.actor.command.patch_one.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\PatchOneCommandAdapter
+    project.demoapi.actor.command.patch_many.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\PatchManyCommandAdapter
+    project.demoapi.actor.command.delete_one.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\DeleteOneCommandAdapter
+    project.demoapi.actor.command.delete_many.adapter.class: DemoApiContext\Presentation\Adapter\Actor\Command\DeleteManyCommandAdapter
+
+    ###################
+    # COMMAND HANDLER #
+    ###################
+    project.demoapi.actor.command.create_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\CreateOneCommandHandler
+    project.demoapi.actor.command.create_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\CreateManyCommandHandler
+    project.demoapi.actor.command.update_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\UpdateOneCommandHandler
+    project.demoapi.actor.command.update_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\UpdateManyCommandHandler
+    project.demoapi.actor.command.patch_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\PatchOneCommandHandler
+    project.demoapi.actor.command.patch_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\PatchManyCommandHandler
+    project.demoapi.actor.command.delete_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\DeleteOneCommandHandler
+    project.demoapi.actor.command.delete_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\DeleteManyCommandHandler
+
+    ############################
+    # COMMAND HANDLER DECORATOR#
+    ############################
+    project.demoapi.actor.command.create_one.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\CreateOneCommandHandlerDecorator
+    project.demoapi.actor.command.create_many.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\CreateManyCommandHandlerDecorator
+    project.demoapi.actor.command.update_one.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\UpdateOneCommandHandlerDecorator
+    project.demoapi.actor.command.update_many.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\UpdateManyCommandHandlerDecorator
+    project.demoapi.actor.command.patch_one.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\PatchOneCommandHandlerDecorator
+    project.demoapi.actor.command.patch_many.handler.decorator.class: DemoApiContext\Application\Cqrs\Actor\Command\Handler\Decorator\PatchManyCommandHandlerDecorator
+
+    ######################
+    # VALIDATION HANDLER #
+    ######################
+    project.demoapi.actor.validation.create_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\CreateOneCommandValidationHandler
+    project.demoapi.actor.validation.create_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\CreateManyCommandValidationHandler
+    project.demoapi.actor.validation.update_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\UpdateOneCommandValidationHandler
+    project.demoapi.actor.validation.update_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\UpdateManyCommandValidationHandler
+    project.demoapi.actor.validation.patch_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\PatchOneCommandValidationHandler
+    project.demoapi.actor.validation.patch_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\ValidationHandler\PatchManyCommandValidationHandler
+
+    #################
+    # SPECS HANDLER #
+    #################
+    project.demoapi.actor.spec.create_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\CreateOneCommandSpecHandler
+    project.demoapi.actor.spec.create_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\CreateManyCommandSpecHandler
+    project.demoapi.actor.spec.update_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\UpdateOneCommandSpecHandler
+    project.demoapi.actor.spec.update_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\UpdateManyCommandSpecHandler
+    project.demoapi.actor.spec.patch_one.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\PatchOneCommandSpecHandler
+    project.demoapi.actor.spec.patch_many.handler.class: DemoApiContext\Application\Cqrs\Actor\Command\Validation\SpecHandler\PatchManyCommandSpecHandler
+
+services:
+    ###########
+    # MANAGER #
+    ###########
+
+    #
+    # Create Manager Configuration
+    #
+    project.demoapi.actor.manager.command.create_manager:
+        class: '%project.demoapi.actor.manager.command.create_manager.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [addProcess, ['pre_persist_create', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_create', '@project.demoapi.actor.create.post_persist.process']]
+            - [addProcess, ['pre_persist_update', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_update', '@project.demoapi.actor.create.post_persist.process']]
+
+    #
+    # Update Manager Configuration
+    #
+    project.demoapi.actor.manager.command.update_manager:
+        class: '%project.demoapi.actor.manager.command.update_manager.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [addProcess, ['pre_persist_create', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_create', '@project.demoapi.actor.create.post_persist.process']]
+            - [addProcess, ['pre_persist_update', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_update', '@project.demoapi.actor.create.post_persist.process']]
+
+    #
+    # Patch Manager Configuration
+    #
+    project.demoapi.actor.manager.command.patch_manager:
+        class: '%project.demoapi.actor.manager.command.patch_manager.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [addProcess, ['pre_persist_create', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_create', '@project.demoapi.actor.create.post_persist.process']]
+            - [addProcess, ['pre_persist_update', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_update', '@project.demoapi.actor.create.post_persist.process']]
+
+    #
+    # DeleteOne Manager Configuration
+    #
+    project.demoapi.actor.manager.command.delete_one_manager:
+        class: '%project.demoapi.actor.manager.command.delete_one_manager.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [addProcess, ['pre_persist_create', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_create', '@project.demoapi.actor.create.post_persist.process']]
+            - [addProcess, ['pre_persist_update', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_update', '@project.demoapi.actor.create.post_persist.process']]
+
+    #
+    # DeleteMany Manager Configuration
+    #
+    project.demoapi.actor.manager.command.delete_many_manager:
+        class: '%project.demoapi.actor.manager.command.delete_many_manager.class%'
+        arguments:
+            - '@project.demoapi.actor.repository.factory'
+            - '@project.demoapi.actor.fields_definition'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [addProcess, ['pre_persist_create', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_create', '@project.demoapi.actor.create.post_persist.process']]
+            - [addProcess, ['pre_persist_update', '@project.demoapi.actor.create.pre_persist.process']]
+            - [addProcess, ['post_persist_update', '@project.demoapi.actor.create.post_persist.process']]
+
+    ####################
+    # WORKFLOW HANDLER #
+    ####################
+
+    #
+    # CreateOne Workflow Handler
+    #
+    project.demoapi.actor.create_one.workflow.handler:
+        class: '%project.demoapi.actor.create_one.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.one.valueobject']]
+          - [addObserver, ['@project.demoapi.actor.workflow.create_one.entity']]
+
+    #
+    # CreateMany Workflow Handler
+    #
+    project.demoapi.actor.create_many.workflow.handler:
+        class: '%project.demoapi.actor.create_many.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.create_many.valueobject']]
+          - [addObserver, ['@project.demoapi.actor.workflow.create_many.entity']]
+
+    #
+    # UpdateOne Workflow Handler
+    #
+    project.demoapi.actor.update_one.workflow.handler:
+        class: '%project.demoapi.actor.update_one.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.one.valueobject']]
+          - [addObserver, ['@project.demoapi.actor.workflow.update_one.entity']]
+
+    #
+    # UpdateMany Workflow Handler
+    #
+    project.demoapi.actor.update_many.workflow.handler:
+        class: '%project.demoapi.actor.update_many.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.update_many.valueobject']]
+          - [addObserver, ['@project.demoapi.actor.workflow.update_many.entity']]
+
+    #
+    # PatchOne Workflow Handler
+    #
+    project.demoapi.actor.patch_one.workflow.handler:
+        class: '%project.demoapi.actor.patch_one.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.loadentity']]
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.valueobject.patch_one']]
+
+    #
+    # PatchMany Workflow Handler
+    #
+    project.demoapi.actor.patch_many.workflow.handler:
+        class: '%project.demoapi.actor.patch_many.workflow.handler.class%'
+        arguments:
+          - '%kernel.environment%'
+        calls:
+          - [addObserver, ['@project.demoapi.actor.workflow.loadentities']]
+          - [addObserver, ['@project.demoapi.actor.workflow.generate.patch_many.valueobject']]
+
+    #####################
+    # WORKFLOW OBSERVER #
+    #####################
+
+    #
+    # Value Objects
+    #
+    project.demoapi.actor.workflow.generate.one.valueobject:
+        class: '%project.demoapi.actor.workflow.generate.one.valueobject.class%'
+
+    project.demoapi.actor.workflow.generate.valueobject.patch_one:
+        class: '%project.demoapi.actor.workflow.generate.valueobject.patch_one.class%'
+
+    project.demoapi.actor.workflow.generate.create_many.valueobject:
+        class: '%project.demoapi.actor.workflow.generate.create_many.valueobject.class%'
+
+    project.demoapi.actor.workflow.generate.update_many.valueobject:
+        class: '%project.demoapi.actor.workflow.generate.update_many.valueobject.class%'
+
+    project.demoapi.actor.workflow.generate.patch_many.valueobject:
+        class: '%project.demoapi.actor.workflow.generate.patch_many.valueobject.class%'
+
+    #
+    # Persistence
+    #
+    project.demoapi.actor.workflow.create_one.entity:
+        class: '%project.demoapi.actor.workflow.create_one.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.create_manager']]
+
+    project.demoapi.actor.workflow.create_many.entity:
+        class: '%project.demoapi.actor.workflow.create_many.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.create_manager']]
+
+    project.demoapi.actor.workflow.update_one.entity:
+        class: '%project.demoapi.actor.workflow.update_one.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.update_manager']]
+
+    project.demoapi.actor.workflow.update_many.entity:
+        class: '%project.demoapi.actor.workflow.update_many.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.update_manager']]
+
+    project.demoapi.actor.workflow.patch_one.entity:
+        class: '%project.demoapi.actor.workflow.patch_one.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.patch_manager']]
+
+    project.demoapi.actor.workflow.patch_many.entity:
+        class: '%project.demoapi.actor.workflow.patch_many.entity.class%'
+        calls:
+            - [setLogger, ['@project.dddcontext.logger.domain']]
+            - [setManager, ['@project.demoapi.actor.manager.command.patch_manager']]
+
+    project.demoapi.actor.workflow.loadentity:
+        class: '%project.demoapi.actor.workflow.loadentity.class%'
+        calls:
+            - [setManager, ['@project.demoapi.actor.manager.query.get_one']]
+
+    project.demoapi.actor.workflow.loadentities:
+        class: '%project.demoapi.actor.workflow.loadentities.class%'
+        calls:
+            - [setManager, ['@project.demoapi.actor.manager.query.get_by_ids']]
+
+    ###################
+    # COMMAND HANDLER #
+    ###################
+
+    #
+    # CreateOne Command Handler
+    #
+    project.demoapi.actor.command.create_one.handler:
+        class: '%project.demoapi.actor.command.create_one.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.create_one.workflow.handler'
+
+    #
+    # CreateMany Command Handler
+    #
+    project.demoapi.actor.command.create_many.handler:
+        class: '%project.demoapi.actor.command.create_many.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.create_many.workflow.handler'
+
+    #
+    # UpdateOne Command Handler
+    #
+    project.demoapi.actor.command.update_one.handler:
+        class: '%project.demoapi.actor.command.update_one.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.update_one.workflow.handler'
+
+    #
+    # UpdateMany Command Handler
+    #
+    project.demoapi.actor.command.update_many.handler:
+        class: '%project.demoapi.actor.command.update_many.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.update_many.workflow.handler'
+
+    #
+    # PatchOne Command Handler
+    #
+    project.demoapi.actor.command.patch_one.handler:
+        class: '%project.demoapi.actor.command.patch_one.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.patch_one.workflow.handler'
+
+    #
+    # PatchMany Command Handler
+    #
+    project.demoapi.actor.command.patch_many.handler:
+        class: '%project.demoapi.actor.command.patch_many.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.patch_many.workflow.handler'
+
+    #
+    # DeleteOne Command Handler
+    #
+    project.demoapi.actor.command.delete_one.handler:
+        class: '%project.demoapi.actor.command.delete_one.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.command.delete_one_manager'
+
+    #
+    # DeleteMany Command Handler
+    #
+    project.demoapi.actor.command.delete_many.handler:
+        class: '%project.demoapi.actor.command.delete_many.handler.class%'
+        arguments:
+            - '@project.demoapi.actor.manager.command.delete_many_manager'
+
+    ###################
+    # COMMAND ADAPTER #
+    ###################
+
+    #
+    # CreateOne Command Adapter
+    #
+    project.demoapi.actor.command.create_one.adapter:
+        class: '%project.demoapi.actor.command.create_one.adapter.class%'
+
+    #
+    # CreateMany Command Adapter
+    #
+    project.demoapi.actor.command.create_many.adapter:
+        class: '%project.demoapi.actor.command.create_many.adapter.class%'
+
+    #
+    # UpdateOne Command Adapter
+    #
+    project.demoapi.actor.command.update_one.adapter:
+        class: '%project.demoapi.actor.command.update_one.adapter.class%'
+
+    #
+    # UpdateMany Command Adapter
+    #
+    project.demoapi.actor.command.update_many.adapter:
+        class: '%project.demoapi.actor.command.update_many.adapter.class%'
+
+    #
+    # PatchOne Command Adapter
+    #
+    project.demoapi.actor.command.patch_one.adapter:
+        class: '%project.demoapi.actor.command.patch_one.adapter.class%'
+
+    #
+    # PatchMany Command Adapter
+    #
+    project.demoapi.actor.command.patch_many.adapter:
+        class: '%project.demoapi.actor.command.patch_many.adapter.class%'
+
+    #
+    # DeleteOne Command Adapter
+    #
+    project.demoapi.actor.command.delete_one.adapter:
+        class: '%project.demoapi.actor.command.delete_one.adapter.class%'
+
+    #
+    # DeleteMany Command Adapter
+    #
+    project.demoapi.actor.command.delete_many.adapter:
+        class: '%project.demoapi.actor.command.delete_many.adapter.class%'
+
+    #############################
+    # COMMAND HANDLER DECORATOR #
+    #############################
+
+    #
+    # CreateOne Command Handler Decorator
+    #
+    project.demoapi.actor.command.create_one.handler.decorator:
+        class: '%project.demoapi.actor.command.create_one.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.create_one.handler'
+            - '@project.demoapi.actor.validation.create_one.handler'
+            - '@project.demoapi.actor.spec.create_one.handler'
+
+    #
+    # CreateMany Command Handler Decorator
+    #
+    project.demoapi.actor.command.create_many.handler.decorator:
+        class: '%project.demoapi.actor.command.create_many.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.create_many.handler'
+            - '@project.demoapi.actor.validation.create_many.handler'
+            - '@project.demoapi.actor.spec.create_many.handler'
+
+    #
+    # UpdateOne Command Handler Decorator
+    #
+    project.demoapi.actor.command.update_one.handler.decorator:
+        class: '%project.demoapi.actor.command.update_one.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.update_one.handler'
+            - '@project.demoapi.actor.validation.update_one.handler'
+            - '@project.demoapi.actor.spec.update_one.handler'
+
+    #
+    # UpdateMany Command Handler Decorator
+    #
+    project.demoapi.actor.command.update_many.handler.decorator:
+        class: '%project.demoapi.actor.command.update_many.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.update_many.handler'
+            - '@project.demoapi.actor.validation.update_many.handler'
+            - '@project.demoapi.actor.spec.update_many.handler'
+
+    #
+    # PatchOne Command Handler Decorator
+    #
+    project.demoapi.actor.command.patch_one.handler.decorator:
+        class: '%project.demoapi.actor.command.patch_one.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.patch_one.handler'
+            - '@project.demoapi.actor.validation.patch_one.handler'
+            - '@project.demoapi.actor.spec.patch_one.handler'
+
+    #
+    # PatchMany Command Handler Decorator
+    #
+    project.demoapi.actor.command.patch_many.handler.decorator:
+        class: '%project.demoapi.actor.command.patch_many.handler.decorator.class%'
+        arguments:
+            - '@project.demoapi.actor.command.patch_many.handler'
+            - '@project.demoapi.actor.validation.patch_many.handler'
+            - '@project.demoapi.actor.spec.patch_many.handler'
+
+    ######################
+    # VALIDATION HANDLER #
+    ######################
+
+    #
+    # CreateOne Command Validation Handler
+    #
+    project.demoapi.actor.validation.create_one.handler:
+        class: '%project.demoapi.actor.validation.create_one.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #
+    # CreateMany Command Validation Handler
+    #
+    project.demoapi.actor.validation.create_many.handler:
+        class: '%project.demoapi.actor.validation.create_many.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #
+    # UpdateOne Command Validation Handler
+    #
+    project.demoapi.actor.validation.update_one.handler:
+        class: '%project.demoapi.actor.validation.update_one.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #
+    # UpdateMany Command Validation Handler
+    #
+    project.demoapi.actor.validation.update_many.handler:
+        class: '%project.demoapi.actor.validation.update_many.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #
+    # PatchOne Command Validation Handler
+    #
+    project.demoapi.actor.validation.patch_one.handler:
+        class: '%project.demoapi.actor.validation.patch_one.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #
+    # PatchMany Command Validation Handler
+    #
+    project.demoapi.actor.validation.patch_many.handler:
+        class: '%project.demoapi.actor.validation.patch_many.handler.class%'
+        arguments:
+            - '@project.validator.strategy'
+
+    #################
+    # SPECS HANDLER #
+    #################
+
+    #
+    # CreateOne Command Spec Handler
+    #
+    project.demoapi.actor.spec.create_one.handler:
+        class: '%project.demoapi.actor.spec.create_one.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]
+
+    #
+    # CreateMany Command Spec Handler
+    #
+    project.demoapi.actor.spec.create_many.handler:
+        class: '%project.demoapi.actor.spec.create_many.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]
+
+    #
+    # UpdateOne Command Spec Handler
+    #
+    project.demoapi.actor.spec.update_one.handler:
+        class: '%project.demoapi.actor.spec.update_one.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]
+
+    #
+    # UpdateMany Command Spec Handler
+    #
+    project.demoapi.actor.spec.update_many.handler:
+        class: '%project.demoapi.actor.spec.update_many.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]
+
+    #
+    # PatchOne Command Spec Handler
+    #
+    project.demoapi.actor.spec.patch_one.handler:
+        class: '%project.demoapi.actor.spec.patch_one.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]
+
+    #
+    # PatchMany Command Spec Handler
+    #
+    project.demoapi.actor.spec.patch_many.handler:
+        class: '%project.demoapi.actor.spec.patch_many.handler.class%'
+        calls:
+            - [setObject, ['@security.authorization_checker']]
+            - [setLogger, ['@project.dddcontext.logger.application']]

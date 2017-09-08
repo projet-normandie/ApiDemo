@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Author: Nicolas Giraud <nicolas.giraud.dev@gmail.com>
+# Copyright (c) 2017
+# License: MIT
+
+set -o errexit  # Make your script exit when a command fails.
+set -o pipefail # Catch 'xxx' fails for command 'xxx|yyy'.
+set -o nounset  # Exit script when using unset variable.
+#set -o xtrace   # Debug mode. Uncomment to activate.
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__root="$(cd "$(dirname "${__dir}")" && pwd)"
+
+# Set the URL registry where the docker image to based on is stored.
+REGISTRY="nicodocker91/phpunit"
+
+# Set dynamic options for the command:
+# - Enable the --tty option if there is a tty.
+option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
+
+# Build the reports folder where logs will be stored, and its symlink.
+mkdir -p data/reports/ApiDemo/$(date +'%Y%m%d0000') 2>/dev/null
+ln -sfn $(date +'%Y%m%d0000') data/reports/ApiDemo/current
+
+REPORTS_FOLDER="data/reports/ApiDemo/current/logs/phpunit"
+mkdir -p ${REPORTS_FOLDER} 2>/dev/null
+
+# As phpunit requires composer to be ran, check its existance before running the docker command.
+if [ ! -f vendor/autoload.php ]; then
+    echo "# Composer has not been ran while it is required. Running 'cmd/composer install' command..."
+    cmd/composer install
+fi
+if [ ! -f vendor/autoload.php ]; then
+    echo "# Composer install has failed. Cannot run phpunit."
+    exit 2
+fi
+
+# Run the docker command.
+docker run --rm ${option_tty} \
+    --user $(id -u):$(id -g) \
+    --volume ${__root}:/data/www \
+    ${REGISTRY} \
+        --bootstrap=vendor/autoload.php \
+        --log-junit ${REPORTS_FOLDER}/phpunit-unit.xml \
+        --coverage-clover ${REPORTS_FOLDER}/coverage-clover.xml \
+        --coverage-html ${REPORTS_FOLDER}/coverage-html/ \
+        --coverage-text \
+        --colors=never \
+        --whitelist=src/ApiDemo \
+        www/src/Tests

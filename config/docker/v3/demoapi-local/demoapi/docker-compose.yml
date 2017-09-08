@@ -1,0 +1,112 @@
+version: "3.1"
+
+networks:
+  default:
+    external:
+      name: ${NETWORK_NAME}
+
+services:
+  ################################
+  # HTTP CONTAINER
+  ################################
+  http-demoapi-orm:
+    image: 'nginx:alpine'
+    depends_on:
+      - php-${SERVICE_NAME}-orm
+      - database-${SERVICE_NAME}-orm
+    env_file:
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/http/nginx/nginx.env
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/.env.orm
+    environment:
+      NGINX_fastcgi_pass: '${SERVICE_NAME}_php-${SERVICE_NAME}-orm:9000'
+      SERVICE_80_NAME: '${PROJECT_NAME}-${SERVICE_NAME}-orm'
+      SERVICE_80_TAGS: 'http'
+    deploy:
+      labels:
+        - "com.docker.ucp.access.label=${LABEL_UCP}"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host=${PROJECT_NAME}-${SERVICE_NAME}-orm.${DOMAIN}"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.backend=${PROJECT_NAME}-http-${SERVICE_NAME}-orm"
+      mode: replicated
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: continue # rollback continue
+        monitor: 60s
+        max_failure_ratio: 0.3
+    ports:
+      - 80
+
+  ################################
+  # PHP CONTAINER
+  ################################
+  php-demoapi-orm:
+    image: 'php:7.1-fpm-alpine'
+    working_dir: '/var/www'
+    ########
+    user: ${MY_UID}:${MY_GID}
+    env_file:
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/php/php.env.orm
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/.env.orm
+    environment:
+      SYMFONY__PROJECT__DOMAIN__ENV: '${PROJECT_NAME}-${SERVICE_NAME}-orm.${DOMAIN}'
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - ./www:/var/www:rw
+      - ./documentation:/www-doc-pratical
+      - ./data/cache:/tmp/www-cache
+      - ./data/log:/tmp/www-log
+      - ./data/reports:/tmp/www-build
+      - ./data/documentation:/tmp/www-documentation
+    ######
+    deploy:
+      labels:
+        - "com.docker.ucp.access.label=${LABEL_UCP}"
+        - "traefik.enable=false"
+      mode: replicated
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: continue # rollback continue
+        monitor: 60s
+        max_failure_ratio: 0.3
+
+  ################################
+  # DATABASE CONTAINER
+  ################################
+  database-demoapi-orm:
+    image: 'mariadb:10.3'
+    ########
+    env_file:
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/database/mysql.env
+      - ./config/docker/v3/${SERVICE_NAME}-local/${SERVICE_NAME}/env/.env.orm
+    volumes:
+      - ./data/database/mysql/dir:/var/lib/mysql
+    ######
+    deploy:
+      labels:
+        - "com.docker.ucp.access.label=${LABEL_UCP}"
+        - "traefik.enable=false"
+      mode: replicated # global replicated
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: continue
+        monitor: 60s
+        max_failure_ratio: 0.3
